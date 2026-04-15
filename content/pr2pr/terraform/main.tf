@@ -19,6 +19,11 @@ provider "google-beta" {
   region = var.region
 }
 
+# Project Identity
+resource "google_project" "project" {
+  name            = var.project_id
+  project_id      = var.project_id
+}
 
 # Enable Services
 resource "google_project_service" "services" {

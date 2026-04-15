@@ -10,8 +10,7 @@ Now that the GCP Cloud environment is ready, we will use Terraform to create a f
 ### Prerequisites
 
 1. **Terraform**: Ensure Terraform is installed (v1.0+).
-    -   [Install Terraform](https://developer.hashicorp.com/terraform/install)
-
+This step is based on [Terraform's documentation](https://developer.hashicorp.com/terraform/install)
 Before deploying the basis for this project, we'll install Terraform on our Cloud Shell instance.
 
 ```bash

@@ -1,8 +1,8 @@
-# AgentKon
+# Prompt2Product
 
-Welcome to AgentKon!
+Welcome to Prompt2Product!
 
-AgentKon is an immersive hackathon designed for tech enthusiasts, developers, and innovators to explore the power of Google Cloud products through hands-on learning. This event provides a unique, integrated experience using Google Cloud Shell tutorials, enabling participants to dive deep into cutting-edge cloud technologies.
+Prompt2Product is an immersive hackathon designed for tech enthusiasts, developers, and innovators to explore the power of Google Cloud products through hands-on learning. This event provides a unique, integrated experience using Google Cloud Shell tutorials, enabling participants to dive deep into cutting-edge cloud technologies.
 
 ## Logging into Google Cloud
 

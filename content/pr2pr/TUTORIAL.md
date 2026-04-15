@@ -6,7 +6,7 @@
 </walkthrough-metadata>
 
 
-# AgentKon
+# Prompt2Product
 
 <walkthrough-tutorial-duration duration="15"></walkthrough-tutorial-duration>
 <walkthrough-tutorial-difficulty difficulty="1"></walkthrough-tutorial-difficulty>
@@ -14,7 +14,7 @@
 
 ## Introduction
 
-{% if MY_NAME %}Hi **{{ MY_NAME }}! 👋** {% endif %}Welcome to AgentKon. We're delighted to have you! This sidebar contains parts of the labs you will work through. Before we get started, let's set up a few things:
+{% if MY_NAME %}Hi **{{ MY_NAME }}! 👋** {% endif %}Welcome to Prompt2Product. We're delighted to have you! This sidebar contains parts of the labs you will work through. Before we get started, let's set up a few things:
 
 ### Working with labs
 

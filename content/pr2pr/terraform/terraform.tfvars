@@ -1,0 +1,5 @@
+project_id         = "prop-search-demo"
+billing_account_id = "01EC8D-FECC7D-053DD4"
+region             = "europe-west3"
+zone               = "europe-west3-b"
+db_password        = "c29nr823u-?48dn#99"

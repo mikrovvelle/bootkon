@@ -17,3 +17,5 @@ package-lock.json
 *.swp
 pipeline.json
 .terraform*
+.tfstate.backup
+terraform.tfvars

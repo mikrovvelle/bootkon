@@ -14,18 +14,12 @@ First, we need to enable some Google Cloud Platform (GCP) services. Enabling GCP
 
 <walkthrough-enable-apis apis=
   "storage-component.googleapis.com,
-  notebooks.googleapis.com,
   serviceusage.googleapis.com,
   cloudresourcemanager.googleapis.com,
-  pubsub.googleapis.com,
   compute.googleapis.com,
-  metastore.googleapis.com,
-  datacatalog.googleapis.com,
   bigquery.googleapis.com,
   dataplex.googleapis.com,
-  datalineage.googleapis.com,
   dataform.googleapis.com,
-  dataproc.googleapis.com,
   bigqueryconnection.googleapis.com,
   aiplatform.googleapis.com,
   cloudbuild.googleapis.com,

@@ -46,7 +46,7 @@ terraform init
 ### 2. Configure Variables
 Create a `terraform.tfvars` file to specify your project details. 
 
-```hcl
+```bash
 cp terraform.tfvars.example terraform.tfvars
 ```
 

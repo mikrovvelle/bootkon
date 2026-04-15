@@ -67,7 +67,7 @@ terraform apply
 *Type `yes` when prompted to confirm.*
 
 
-## What gets created?
+### What gets created?
 
 -   **Network**: A VPC network (`search-demo-vpc`) with Private Service Access for AlloyDB.
 -   **Subnet**: A subnet in your region with **Private Google Access** enabled.

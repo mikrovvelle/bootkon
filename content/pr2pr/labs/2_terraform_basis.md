@@ -58,3 +58,29 @@ Run `terraform plan` to see what resources will be created.
 terraform plan
 ```
 *Review the output to ensure it matches your expectations (Project, AlloyDB Cluster, IAM bindings, Regions, Zones, etc.).*
+
+### 4. Apply the Configuration
+Run `terraform apply` to create the infrastructure.
+```bash
+terraform apply
+```
+*Type `yes` when prompted to confirm.*
+
+
+## What gets created?
+
+-   **Network**: A VPC network (`search-demo-vpc`) with Private Service Access for AlloyDB.
+-   **Subnet**: A subnet in your region with **Private Google Access** enabled.
+-   **Firewall**: `allow-internal` rule to permit internal traffic (required for Bastion -> AlloyDB).
+-   **AlloyDB**:
+    -   Cluster: `search-cluster`
+    -   Instance: `search-primary` (2 vCPU, Private IP only)
+    -   Flags: AI & ML integration enabled.
+-   **Bastion Host**: `search-demo-bastion` (e2-micro) for SSH tunneling.
+-   **Artifact Registry**: Repository `search-app-repo`.
+-   **IAM**: Creates a dedicated Service Account `search-backend-sa` and grants necessary roles.
+
+### Next steps
+
+Now it's time to initialize the database schema and extensions.
+

@@ -61,6 +61,7 @@ If neither is `None`, press the `START` button below to get started!
 
 {% include 'pr2pr/labs/1_environment_setup.md' %}
 {% include 'pr2pr/labs/2_terraform_basis.md' %}
+{% include 'pr2pr/labs/3_database_setup.md' %}
 
 ## The end
 

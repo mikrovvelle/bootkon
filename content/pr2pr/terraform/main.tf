@@ -19,13 +19,6 @@ provider "google-beta" {
   region = var.region
 }
 
-# Project Creation
-# resource "google_project" "project" {
-#  name            = var.project_id
-#  project_id      = var.project_id
-#  billing_account = var.billing_account_id
-#  folder_id       = "..." # Optional: Add if needed
-# }
 
 # Enable Services
 resource "google_project_service" "services" {

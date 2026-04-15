@@ -16,3 +16,4 @@ package-lock.json
 *.csv
 *.swp
 pipeline.json
+.terraform*

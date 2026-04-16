@@ -95,12 +95,12 @@ CREATE TABLE "search".property_listings (
     image_gcs_uri TEXT,
     -- COLUMN A: Text Embeddings (Managed by Database)
     -- Automatically generates a 3072-dim vector when you insert text into 'description'.
-    description_embedding VECTOR(3072) GENERATED ALWAYS AS (
+    description_embedding "search".VECTOR(3072) GENERATED ALWAYS AS (
       embedding('gemini-embedding-001', description)
     ) STORED,
     -- COLUMN B: Image Embeddings (Managed by Application)
     -- Populated by 'bootstrap_images.py' using the Multimodal model (3072 dims).
-    image_embedding VECTOR(1408) 
+    image_embedding "search".VECTOR(1408) 
 );
 
 

@@ -79,7 +79,7 @@ Click into the terminal that has opened at the bottom of your screen.
 And copy & paste the following command and press return:
 
 ```bash
-BK_STREAM=pr2pr BK_REPO=mikrovvelle/bootkon; . <(wget -qO- https://raw.githubusercontent.com/${BK_REPO}/${BK_BRANCH}/.scripts/bk)
+BK_STREAM=pr2pr BK_BRANCH=pr2pr BK_REPO=mikrovvelle/bootkon; . <(wget -qO- https://raw.githubusercontent.com/${BK_REPO}/${BK_BRANCH}/.scripts/bk)
 ```
 
 Now, please go back to Cloud Shell and continue with the tutorial that has been opened on the right hand side of your screen!

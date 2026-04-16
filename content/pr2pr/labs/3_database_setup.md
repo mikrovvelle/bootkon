@@ -12,7 +12,7 @@ The script loads environment variables from `../backend/.env`.
 Ensure this file exists and is populated. You can generate it using Terraform outputs:
 
 ```bash
-cd ../terraform
+cd ~/bootkon/content/pr2pr/terraform/
 ./generate_env.sh
 ```
 

@@ -5,6 +5,22 @@ In this section we will:
 - run some scripts for setting up AlloyDB
 - run a Python script `bootstrap_images.py` to generate images and embeddings for property listings.
 
+### Insert the data to AlloyDB
+
+Navigate to [AlloyDB in the Cloud Console](https://console.cloud.google.com/alloydb/). Click the magnifying glass icon on the left-hand activity bar to open AlloyDB Studio. You should be presented with a login dialogue
+
+![](../img/alloydb-login.png)
+
+`postgres` should be the only available database and user name available. Use your configured database password to log in. You should now see the editor. Tap the "Untitled Query" tab (pictured).
+
+![](../img/alloydb-query-editor.png)
+
+1. Copy & paste the contents of the <walkthrough-editor-open-file filePath="content/pr2pr/alloydb-artefacts/alloydb_setup.sql">alloydb_setup.sql</walkthrough-editor-open-file> file into the editor and click the "Run" button.
+2. Copy & paste the contents of the <walkthrough-editor-open-file filePath="content/pr2pr/alloydb-artefacts/100 _sample records.sql">100 _sample records.sql</walkthrough-editor-open-file> file into the editor and click the "Run" button.
+3. Copy & paste the contents of the <walkthrough-editor-open-file filePath="content/pr2pr/alloydb-artefacts/alloydb_ai_nl_setup.sql">alloydb_ai_nl_setup.sql</walkthrough-editor-open-file> file into the editor and click the "Run" button.
+
+
+
 ### Prerequisites
 
 1. **Environment Variables**:
@@ -31,11 +47,8 @@ Ensure you have Python installed and the required dependencies.
 It is recommended to use a virtual environment.
 
 ```bash
-# Create and activate virtual env
 python3 -m venv venv
 source venv/bin/activate
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 

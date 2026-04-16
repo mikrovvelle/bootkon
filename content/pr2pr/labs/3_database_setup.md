@@ -40,15 +40,20 @@ Or manually create it based on `../example.env`. The /setup_env.sh script also h
 The script connects to AlloyDB via `127.0.0.1:5432`. You must have the Auth Proxy running.
 A helper script is provided to start the proxy via the Bastion host:
 ```bash
+cd ~/bootkon/content/pr2pr/alloydb-artefacts/
 ./run_proxy.sh
 ```
 *This will establish an SSH tunnel and start the proxy on the Bastion host.*
 
 3. **Python Environment**:
+
+Open a second terminal in your editor while the proxy is running.
+
 Ensure you have Python installed and the required dependencies.
 It is recommended to use a virtual environment.
 
 ```bash
+cd ~/bootkon/content/pr2pr/alloydb-artefacts/
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -56,7 +61,7 @@ pip install -r requirements.txt
 
 ### Running the Script
 
-Once the proxy is running and environment is set:
+With the proxy running:
 
 ```bash
 python bootstrap_images.py

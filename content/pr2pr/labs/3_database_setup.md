@@ -102,6 +102,9 @@ The result should be about 118.
 
 Copy and paste the contents of the <walkthrough-editor-open-file filePath="content/pr2pr/alloydb-artefacts/alloydb_indexes.sql">alloydb_indexes.sql</walkthrough-editor-open-file> file into an editor tab, and click the "Run" button.
 
+
+There are several `SELECT` queries to check that the indexes work. You can check them in the 'results' section, below the editor pane. There should be a drop-down menu allowing you to look at each result set individually.
+
 ### Setup Natural Language Interface
 
 

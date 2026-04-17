@@ -55,13 +55,19 @@ ALTER EXTENSION alloydb_ai_nl UPDATE;
 
 --Register latest embedding model to AlloyDB
 -- Example to register a different embedding model:
-CALL google_ml.create_model(
-  model_id => 'my_gemini_embedding_model',
-  model_provider => 'google',
-  model_qualified_name => 'gemini-embedding-001', -- Or the specific one you want
-  model_type => 'text_embedding',
-  model_auth_type => 'alloydb_service_agent_iam'
-);
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM google_ml.model_info_view WHERE model_id = 'my_gemini_embedding_model') THEN
+        CALL google_ml.create_model(
+            model_id => 'my_gemini_embedding_model',
+            model_provider => 'google',
+            model_qualified_name => 'gemini-embedding-001',
+            model_type => 'text_embedding',
+            model_auth_type => 'alloydb_service_agent_iam'
+        );
+    END IF;
+END
+$$;
 
 -- Check registered models
 SELECT * FROM google_ml.model_info_view;
@@ -95,95 +101,11 @@ CREATE TABLE "search".property_listings (
     image_gcs_uri TEXT,
     -- COLUMN A: Text Embeddings (Managed by Database)
     -- Automatically generates a 3072-dim vector when you insert text into 'description'.
-    description_embedding "search".VECTOR(3072) GENERATED ALWAYS AS (
+    description_embedding VECTOR(3072) GENERATED ALWAYS AS (
       embedding('gemini-embedding-001', description)
     ) STORED,
     -- COLUMN B: Image Embeddings (Managed by Application)
     -- Populated by 'bootstrap_images.py' using the Multimodal model (3072 dims).
-    image_embedding "search".VECTOR(1408) 
+    image_embedding VECTOR(1408) 
 );
 
-
--- 4. SAMPLE DATA INSERTION
--- ===================================================================================
--- Embeddings for 'description' are generated automatically upon insertion. Use Gemini to customize the sample data to your cities and add more samples if you like.
--- Image URIs and Image Embeddings are left NULL here (populated in the Python step).
-
-
--- Run the 100_sample_records.sql file to populate the table with sample data.
-
-
-
-/* ===================================================================================
- STOP! INTERMEDIATE STEP REQUIRED
-===================================================================================
- At this stage, run the Python script: /backend/bootstrap_images.py
- 
- This script will:
- 1. Generate images using Vertex AI Imagen.
- 2. Upload them to Google Cloud Storage.
- 3. Calculate Visual Embeddings.
- 4. Update the database rows below with the image URI and image_vector.
- 
- Once the Python script is finished, proceed to Step 5.
-===================================================================================
-*/
-
--- Verify data exists
-SELECT count(*) as property_count FROM "search".property_listings;
-
-
--- 5. INDEX CREATION (ScaNN)
--- ===================================================================================
--- Index 1: Text Description Index
--- Uses Cosine Distance for semantic similarity.
-CREATE INDEX idx_scann_property_desc ON "search".property_listings
-USING scann (description_embedding)
-WITH (
-    -- 'auto' mode requires ~10k rows. For this demo, we force MANUAL mode.
-    mode = 'MANUAL',
-    num_leaves = 1,     -- 1 partition is optimal for < 1000 rows.
-    quantizer = 'SQ8'   -- Standard quantization for balance of speed/accuracy.
-);
-
--- Index 2: Visual Search Index
--- Indexes the Multi-modal embedding column.
-CREATE INDEX idx_scann_image_search ON "search".property_listings
-USING scann (image_embedding)
-WITH (
-    mode = 'MANUAL',
-    num_leaves = 1,     -- Kept at 1 to ensure stability with small demo dataset.
-    quantizer = 'SQ8'
-);
-
-
--- 6. VALIDATION QUERIES
--- ===================================================================================
-
--- Test A: Simple Semantic Search
--- Finds "Student" vibes even without the word "Student" (looking for "Quiet", "Study").
-SELECT title, description, price, city
-FROM "search".property_listings
-ORDER BY description_embedding <=> embedding('gemini-embedding-001', 'a quiet place to study near by University')::vector
-LIMIT 3;
-
--- Test B: Hybrid Search (Semantic + Filters)
--- Finds modern apartments, specifically in Zurich, specifically under 15k.
-SELECT id, title, price, city
-FROM "search".property_listings
-WHERE price < 15000.00
-  AND city = 'Zurich'
-ORDER BY description_embedding <=> embedding('gemini-embedding-001', 'a modern apartment for a professional working in the city')::vector
-LIMIT 3;
-
--- Test C: Concept/Vibe Search
--- "Live near water" -> matches descriptions mentioning lakes or rivers.
-SELECT
-    title,
-    price,
-    city,
-    -- Show the actual distance score (0 is perfect match, 1 is no match)
-    description_embedding <=> embedding('gemini-embedding-001', 'I want to live near the water')::vector AS cosine_distance
-FROM "search".property_listings
-ORDER BY cosine_distance ASC
-LIMIT 3;

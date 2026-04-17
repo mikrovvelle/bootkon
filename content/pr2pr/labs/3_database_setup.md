@@ -3,7 +3,7 @@
 In this section we will:
 
 - run some scripts for setting up AlloyDB
-- run a Python script `bootstrap_images.py` to generate images and embeddings for property listings.
+- run a Python script to generate images and embeddings for property listings.
 
 ### Insert the data to AlloyDB
 
@@ -20,9 +20,6 @@ Click the magnifying glass icon on the left-hand activity bar to open AlloyDB St
 1. Copy & paste the contents of the <walkthrough-editor-open-file filePath="content/pr2pr/alloydb-artefacts/alloydb_setup.sql">alloydb_setup.sql</walkthrough-editor-open-file> file into the editor and click the "Run" button.
 2. Open a new editor tab. Copy & paste the contents of the <walkthrough-editor-open-file filePath="content/pr2pr/alloydb-artefacts/100 _sample records.sql">100 _sample records.sql</walkthrough-editor-open-file> file into the editor and click the "Run" button.
 
-
-
-3. Copy & paste the contents of the <walkthrough-editor-open-file filePath="content/pr2pr/alloydb-artefacts/alloydb_ai_nl_setup.sql">alloydb_ai_nl_setup.sql</walkthrough-editor-open-file> file into the editor and click the "Run" button.
 
 ### Generate Images and Embeddings
 
@@ -95,5 +92,17 @@ This will take a few minutes. Once it completes, you can close the 2nd terminal 
 
 ### Create Indexes
 
-In Cloud Console's AlloyDB Studio, copy and paste the contents of the <walkthrough-editor-open-file filePath="content/pr2pr/alloydb-artefacts/alloydb_indexes.sql">alloydb_indexes.sql</walkthrough-editor-open-file> file into an editor tab, and click the "Run" button.
+In Cloud Console's AlloyDB Studio, run the following SQL statement to verify that the table has been populated:
 
+```sql
+SELECT count(*) as property_count FROM "search".property_listings;
+```
+
+The result should be about 118.
+
+Copy and paste the contents of the <walkthrough-editor-open-file filePath="content/pr2pr/alloydb-artefacts/alloydb_indexes.sql">alloydb_indexes.sql</walkthrough-editor-open-file> file into an editor tab, and click the "Run" button.
+
+### Setup Natural Language Interface
+
+
+Finally, copy & paste the contents of the <walkthrough-editor-open-file filePath="content/pr2pr/alloydb-artefacts/alloydb_ai_nl_setup.sql">alloydb_ai_nl_setup.sql</walkthrough-editor-open-file> file into the editor and click the "Run" button.

@@ -1,9 +1,3 @@
--- Verify data exists
-SELECT count(*) as property_count FROM "search".property_listings;
-
-
--- 5. INDEX CREATION (ScaNN)
--- ===================================================================================
 -- Index 1: Text Description Index
 -- Uses Cosine Distance for semantic similarity.
 CREATE INDEX idx_scann_property_desc ON "search".property_listings

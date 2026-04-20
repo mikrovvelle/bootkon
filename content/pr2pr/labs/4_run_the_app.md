@@ -18,5 +18,7 @@ This mimics the Cloud Run environment locally using Docker and a Bastion host tu
 
 ```bash
 ./deploy.sh
+```
+
 
 

@@ -17,6 +17,9 @@ package-lock.json
 *.swp
 pipeline.json
 .terraform*
-.tfstate.backup
+*.tfstate.backup
 terraform.tfvars
+terraform.tfstate
 venv
+alloydb-auth-proxy
+proxy.log

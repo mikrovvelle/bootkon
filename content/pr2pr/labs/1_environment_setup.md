@@ -36,6 +36,8 @@ Execute the following script:
 content/pr2pr/bk-bootstrap
 ```
 
+This script will install the required Python packages and assign the necessary IAM permissions to your user account.
+
 ### Success
 
 🎉 Congratulations{% if MY_NAME %}, {{ MY_NAME }}{% endif %}! You've officially leveled up from "cloud-curious" to "GCP aware"! 🌩️🚀

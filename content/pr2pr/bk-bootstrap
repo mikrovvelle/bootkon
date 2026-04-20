@@ -1,3 +1,8 @@
 #!/bin/bash
 
 pip install -r content/pr2pr/requirements.txt
+
+gcloud projects add-iam-policy-binding $(gcloud config get-value project) \
+    --member="user:$(gcloud config get-value account)" \
+    --role="roles/iap.tunnelResourceAccessor"
+

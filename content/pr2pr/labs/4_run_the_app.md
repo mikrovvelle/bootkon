@@ -20,5 +20,13 @@ This mimics the Cloud Run environment locally using Docker and a Bastion host tu
 ./deploy.sh
 ```
 
+The script should share a link to the frontend service. Click on it and play around with the app. It's likely that no everything works. This is where the the hacking starts.
 
+Now we're ready to build more. To take advantage of Gemini 3.1 Pro Preview, we need to use the `gemini` CLI:
+
+```bash
+gemini --model gemini-3.1-pro-preview
+```
+
+From here, you can use natural language prompts to ask questions about the codebase, fix issues, or add features.
 

@@ -25,6 +25,7 @@ WITH (
 
 -- Test A: Simple Semantic Search
 -- Finds "Student" vibes even without the word "Student" (looking for "Quiet", "Study").
+SET search_path TO "search", public;
 SELECT title, description, price, city
 FROM "search".property_listings
 ORDER BY description_embedding <=> embedding('gemini-embedding-001', 'a quiet place to study near by University')::vector
@@ -32,6 +33,7 @@ LIMIT 3;
 
 -- Test B: Hybrid Search (Semantic + Filters)
 -- Finds modern apartments, specifically in Zurich, specifically under 15k.
+SET search_path TO "search", public;
 SELECT id, title, price, city
 FROM "search".property_listings
 WHERE price < 15000.00
@@ -41,6 +43,7 @@ LIMIT 3;
 
 -- Test C: Concept/Vibe Search
 -- "Live near water" -> matches descriptions mentioning lakes or rivers.
+SET search_path TO "search", public;
 SELECT
     title,
     price,

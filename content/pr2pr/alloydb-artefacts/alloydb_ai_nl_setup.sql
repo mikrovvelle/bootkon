@@ -103,7 +103,7 @@ SELECT alloydb_ai_nl.add_template(
         DESC
         LIMIT 25
     $$,
-    check_intent => FALSE
+    check_intent => TRUE
 ); 
 
 -- ### 2 ### Only where predicates
@@ -118,7 +118,7 @@ SELECT alloydb_ai_nl.add_template(
           AND "bedrooms" >= 2            -- Filter by min 2 rooms 
         LIMIT 25
     $$,
-    check_intent => FALSE
+    check_intent => TRUE
 ); 
 
 -- ### 3 ### Only semantic search
@@ -134,7 +134,7 @@ SELECT alloydb_ai_nl.add_template(
         DESC
         LIMIT 25
     $$,
-    check_intent => FALSE
+    check_intent => TRUE
 ); 
 
 
@@ -147,7 +147,7 @@ SELECT alloydb_ai_nl.add_fragment(
     table_aliases => ARRAY['search.property_listings'],
     intent        => 'luxury',
     fragment      => 'price >= 8000',
-    check_intent  => FALSE
+    check_intent  => TRUE
 );
 
 -- [Fragment] "Cheap/Budget" Definition
@@ -156,7 +156,7 @@ SELECT alloydb_ai_nl.add_fragment(
     table_aliases => ARRAY['search.property_listings'],
     intent        => 'cheap',
     fragment      => 'price <= 2500',
-    check_intent  => FALSE
+    check_intent  => TRUE
 );
 
 -- [Fragment] "Family Friendly" Definition
@@ -165,7 +165,7 @@ SELECT alloydb_ai_nl.add_fragment(
     table_aliases => ARRAY['search.property_listings'],
     intent        => 'family appartment',
     fragment      => 'bedrooms >= 3',
-    check_intent  => FALSE
+    check_intent  => TRUE
 );
 
 -- [Fragment] "Studio" Definition
@@ -174,7 +174,7 @@ SELECT alloydb_ai_nl.add_fragment(
     table_aliases => ARRAY['search.property_listings'],
     intent        => 'studio',
     fragment      => 'bedrooms = 0',
-    check_intent  => FALSE
+    check_intent  => TRUE
 );
 
 

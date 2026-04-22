@@ -77,7 +77,7 @@ sudo docker run -d --rm \
     -e GCP_PROJECT_ID=$PROJECT_ID \
     -e GCP_LOCATION=$REGION \
     -e INSTANCE_CONNECTION_NAME=$INSTANCE_CONNECTION_NAME \
-    -e VERTEX_SEARCH_DATA_STORE_ID="$VERTEX_SEARCH_DATA_STORE_ID" \
+    -e VERTEX_AI_SEARCH_DATA_STORE_ID="$VERTEX_AI_SEARCH_DATA_STORE_ID" \
     -e GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys.json \
     -v $HOME/.config/gcloud/application_default_credentials.json:/tmp/keys.json:ro \
     local-search-backend

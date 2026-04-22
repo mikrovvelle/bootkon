@@ -6,7 +6,7 @@
 As one last setup step, let's deploy a VectorAI Search store which will be linked to AlloyDB.
 
 1. Navigate to [Vertex AI Data Stores](https://console.cloud.google.com/gen-app-builder/data-stores?project={{ PROJECT_ID }}), 
-2. click <walkthrough-spotlight-pointer locator="semantic({button 'Create data store'})">Create data store</walkthrough-spotlight-pointer> and follow the instructions to create a new data store.
+2. click "Create data store" and follow the instructions to create a new data store.
 3. In the "Select a data source" field, type "AlloyDB". AlloyDB should show up as an option in the list of first-party data sources. Click on "add data source"
 4. Fill out the fields to define the source:
 

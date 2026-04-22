@@ -20,7 +20,8 @@ As one last setup step, let's deploy a VectorAI Search store which will be linke
 6. Fill out the last two configuration fields:
 
   - Multi-region: leave as "global"
-  - Data store name: "property-listings-ds"
+  - Data store name: "property-listings-ds", 
+  - **Important**: under the data store name field there is a link to "Edit" the data store ID. Click on it and set the data store ID to "property-listings-ds".
 
 7. Click "Continue", leave the pricing model as "General pricing" and click "Create".
 

@@ -17,8 +17,8 @@ Combined Setup & Hardening Script
 SET search_path TO "search", public;
 
 -- Install/Update the Natural Language extension
-CREATE EXTENSION IF NOT EXISTS parameterized_views CASCADE;
-CREATE EXTENSION IF NOT EXISTS alloydb_ai_nl CASCADE;
+CREATE EXTENSION IF NOT EXISTS parameterized_views WITH SCHEMA public CASCADE;
+CREATE EXTENSION IF NOT EXISTS alloydb_ai_nl WITH SCHEMA public CASCADE;
 ALTER EXTENSION alloydb_ai_nl UPDATE;
 
 -- Check version
@@ -28,6 +28,9 @@ WHERE installed_version IS NOT NULL;
 
 -- Create the configuration
 SELECT alloydb_ai_nl.g_create_configuration('property_search_config');
+
+-- Use the working model
+CALL alloydb_ai_nl.g_do_change_model('property_search_config', 'my_gemini_2_5_flash');
 
 -- 1. SCHEMA CONTEXT & TUNING
 -- ===================================================================================
@@ -100,7 +103,7 @@ SELECT alloydb_ai_nl.add_template(
         DESC
         LIMIT 25
     $$,
-    check_intent => TRUE
+    check_intent => FALSE
 ); 
 
 -- ### 2 ### Only where predicates
@@ -115,7 +118,7 @@ SELECT alloydb_ai_nl.add_template(
           AND "bedrooms" >= 2            -- Filter by min 2 rooms 
         LIMIT 25
     $$,
-    check_intent => TRUE
+    check_intent => FALSE
 ); 
 
 -- ### 3 ### Only semantic search
@@ -131,7 +134,7 @@ SELECT alloydb_ai_nl.add_template(
         DESC
         LIMIT 25
     $$,
-    check_intent => TRUE
+    check_intent => FALSE
 ); 
 
 
@@ -143,7 +146,8 @@ SELECT alloydb_ai_nl.add_fragment(
     nl_config_id  => 'property_search_config',
     table_aliases => ARRAY['search.property_listings'],
     intent        => 'luxury',
-    fragment      => 'price >= 8000'
+    fragment      => 'price >= 8000',
+    check_intent  => FALSE
 );
 
 -- [Fragment] "Cheap/Budget" Definition
@@ -151,7 +155,8 @@ SELECT alloydb_ai_nl.add_fragment(
     nl_config_id  => 'property_search_config',
     table_aliases => ARRAY['search.property_listings'],
     intent        => 'cheap',
-    fragment      => 'price <= 2500'
+    fragment      => 'price <= 2500',
+    check_intent  => FALSE
 );
 
 -- [Fragment] "Family Friendly" Definition
@@ -159,7 +164,8 @@ SELECT alloydb_ai_nl.add_fragment(
     nl_config_id  => 'property_search_config',
     table_aliases => ARRAY['search.property_listings'],
     intent        => 'family appartment',
-    fragment      => 'bedrooms >= 3'
+    fragment      => 'bedrooms >= 3',
+    check_intent  => FALSE
 );
 
 -- [Fragment] "Studio" Definition
@@ -167,7 +173,8 @@ SELECT alloydb_ai_nl.add_fragment(
     nl_config_id  => 'property_search_config',
     table_aliases => ARRAY['search.property_listings'],
     intent        => 'studio',
-    fragment      => 'bedrooms = 0'
+    fragment      => 'bedrooms = 0',
+    check_intent  => FALSE
 );
 
 
@@ -190,7 +197,7 @@ WHERE config = 'property_search_config';
 SELECT alloydb_ai_nl.get_sql(
     'property_search_config',
     'Show me cheap family apartments in Zurich not ground floor'
-) ->> 'sql';
+);
 
 
 -- Execute NL Query function

@@ -36,19 +36,19 @@ SET search_path TO "search", public;
 -- ===================================================================================
 
 -- Enable the Google ML Integration (Bridge to Vertex AI)
-CREATE EXTENSION IF NOT EXISTS google_ml_integration CASCADE;
+CREATE EXTENSION IF NOT EXISTS google_ml_integration WITH SCHEMA public CASCADE;
 
 -- Enable pgvector (Base vector data type support)
-CREATE EXTENSION IF NOT EXISTS vector CASCADE;
+CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public CASCADE;
 
 -- Enable AlloyDB ScaNN (High-performance vector indexing)
-CREATE EXTENSION IF NOT EXISTS alloydb_scann CASCADE;
+CREATE EXTENSION IF NOT EXISTS alloydb_scann WITH SCHEMA public CASCADE;
 
 -- Enable Parameterized Views (Required for Toolbox)
-CREATE EXTENSION IF NOT EXISTS parameterized_views CASCADE;
+CREATE EXTENSION IF NOT EXISTS parameterized_views WITH SCHEMA public CASCADE;
 
 -- Enable Natural Language Support (For the NL2SQL features configured later)
-CREATE EXTENSION IF NOT EXISTS alloydb_ai_nl CASCADE;
+CREATE EXTENSION IF NOT EXISTS alloydb_ai_nl WITH SCHEMA public CASCADE;
 
 -- Update extensions to ensure latest versions are active
 ALTER EXTENSION alloydb_ai_nl UPDATE;

@@ -66,6 +66,16 @@ BEGIN
             model_auth_type => 'alloydb_service_agent_iam'
         );
     END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM google_ml.model_info_view WHERE model_id = 'my_gemini_2_5_flash') THEN
+        CALL google_ml.create_model(
+            model_id => 'my_gemini_2_5_flash',
+            model_provider => 'google',
+            model_request_url => 'publishers/google/models/gemini-2.5-flash:generateContent',
+            model_type => 'generic',
+            model_auth_type => 'alloydb_service_agent_iam'
+        );
+    END IF;
 END
 $$;
 

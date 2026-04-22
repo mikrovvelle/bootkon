@@ -1,31 +1,6 @@
 ## Lab 4: Run the App
 
-
-### Vertex AI Data Store
-
-As one last setup step, let's deploy a VectorAI Search store which will be linked to AlloyDB.
-
-1. Navigate to [Vertex AI Data Stores](https://console.cloud.google.com/gen-app-builder/data-stores), 
-2. click "Create data store" and follow the instructions to create a new data store.
-3. In the "Select a data source" field, type "AlloyDB". AlloyDB should show up as an option in the list of first-party data sources. Click on "add data source"
-4. Fill out the fields to define the source:
-
-  - Project ID: "{{ PROJECT_ID }}"
-  - Location ID: your region (should be "europe-west1")
-  - Cluster ID: "search-cluster"
-  - Database ID: "postgres"
-  - Table ID: "search.property_listings"
-
-5. Click "Continue" to go to the configuration page.
-6. Fill out the last two configuration fields:
-
-  - Multi-region: leave as "global"
-  - Data store name: "property-listings-ds", 
-  - **Important**: under the data store name field there is a link to "Edit" the data store ID. Click on it and set the data store ID to "property-listings-ds".
-
-7. Click "Continue", leave the pricing model as "General pricing" and click "Create".
-
-### Debug
+### Debug (optional)
 
 With everything else in place, we will attempt to run the backend and frontend services.
 
@@ -45,13 +20,6 @@ If the previous step looks ok, go ahead and cancel it with `ctrl-c`, deploy the 
 ./deploy.sh
 ```
 
-The script should share a link to the frontend service. Click on it and play around with the app. It's likely that no everything works. This is where the the hacking starts.
+The script should share a link to the frontend service. Click on it and play around with the app. Try out "AlloyDB NL" and "Semantic" searches. 
 
-Now we're ready to build more. To take advantage of Gemini 3.1 Pro Preview, we need to use the `gemini` CLI:
-
-```bash
-gemini --model gemini-3.1-pro-preview
-```
-
-From here, you can use natural language prompts to ask questions about the codebase, fix issues, or add features.
-
+"Vector AI Search" is still not wired up yet. We'll tackle that in the next and final lab.

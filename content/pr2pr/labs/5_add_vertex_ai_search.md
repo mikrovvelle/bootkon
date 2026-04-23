@@ -1,5 +1,7 @@
 ## Lab 5: Add Vertex AI Search
 
+**Optional:** *these steps wire a third natural-language search option to the app. If you'd like to try something else, skip the end to see how to get started with open-ended hacking...*
+
 Our frontend includes three ways to search. Two of them use AlloyDB AI NL, The third one uses Vertex AI Search. Vector AI search will use data from AlloyDB as its own data store.
 
 ### Setup Vertex AI Data Store

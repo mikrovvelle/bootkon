@@ -56,14 +56,14 @@ Run `terraform plan` to see what resources will be created.
 ```bash
 terraform plan
 ```
-*Review the output to ensure it matches your expectations (Project, AlloyDB Cluster, IAM bindings, Regions, Zones, etc.).*
+Review the output to ensure it matches your expectations (Project, AlloyDB Cluster, IAM bindings, Regions, Zones, etc.).
 
 ### 4. Apply the Configuration
 Run `terraform apply` to create the infrastructure.
 ```bash
 terraform apply
 ```
-*Type `yes` when prompted to confirm.*
+Type `yes` when prompted to confirm.
 
 
 ### What gets created?
